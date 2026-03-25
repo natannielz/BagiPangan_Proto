@@ -55,6 +55,7 @@ class AuthenticatedSessionController extends Controller
         $redirectTo = match ($request->user()->role) {
             'admin' => '/admin/dashboard',
             'donor' => '/donor/dashboard',
+            'receiver' => '/receiver/dashboard',
             default => '/donations',
         };
 

@@ -57,7 +57,11 @@ class DonationController extends Controller
         }
 
         $cacheKey  = 'list:'.md5(json_encode($request->only(['status', 'category_id', 'location', 'q', 'sort', 'page'])));
-        $donations = Cache::tags(['donations'])->remember($cacheKey, 60, fn () => $query->paginate(12)->withQueryString());
+        try {
+            $donations = Cache::tags(['donations'])->remember($cacheKey, 60, fn () => $query->paginate(12)->withQueryString());
+        } catch (\BadMethodCallException) {
+            $donations = Cache::remember($cacheKey, 60, fn () => $query->paginate(12)->withQueryString());
+        }
 
         $donations->getCollection()->transform(function (Donation $donation) {
             $donation->photo_url = $donation->photo_path
@@ -67,7 +71,11 @@ class DonationController extends Controller
             return $donation;
         });
 
-        $categories = Cache::tags(['categories'])->remember('all_active', 3600, fn () => Category::query()->where('is_active', true)->orderBy('name')->get());
+        try {
+            $categories = Cache::tags(['categories'])->remember('all_active', 3600, fn () => Category::query()->where('is_active', true)->orderBy('name')->get());
+        } catch (\BadMethodCallException) {
+            $categories = Cache::remember('all_active', 3600, fn () => Category::query()->where('is_active', true)->orderBy('name')->get());
+        }
 
         return view('donations.index', [
             'donations' => $donations,

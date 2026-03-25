@@ -56,6 +56,7 @@ class RegisteredUserController extends Controller
 
         $redirectTo = match ($user->role) {
             'donor' => '/donor/dashboard',
+            'receiver' => '/receiver/dashboard',
             default => '/donations',
         };
 

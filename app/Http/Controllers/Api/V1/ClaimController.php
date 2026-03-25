@@ -126,7 +126,7 @@ class ClaimController extends Controller
             return ApiError::respond('INVALID_STATE', 'Bukti pengambilan belum diunggah.', 422);
         }
 
-        DB::transaction(function () use ($claim, $request) {
+        $result = DB::transaction(function () use ($claim, $request) {
             $lockedClaim    = Claim::lockForUpdate()->findOrFail($claim->id);
             $lockedDonation = Donation::lockForUpdate()->findOrFail($lockedClaim->donation_id);
 
@@ -142,6 +142,10 @@ class ClaimController extends Controller
 
             $lockedDonation->forceFill(['status' => 'completed'])->save();
         });
+
+        if ($result instanceof JsonResponse) {
+            return $result;
+        }
 
         $claim->refresh()->load('donation.category');
 
