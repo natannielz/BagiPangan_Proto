@@ -1,0 +1,68 @@
+name: Dusk
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  dusk:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: bagipangan_test
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, gd, redis
+          coverage: none
+
+      - name: Copy .env
+        run: cp .env.dusk.local .env
+
+      - name: Override DB for CI MySQL
+        run: |
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=bagipangan_test" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=root" >> .env
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Run migrations
+        run: php artisan migrate --force
+
+      - name: Seed demo data
+        run: php artisan db:seed --class=DemoSeeder --force
+
+      - name: Start dev server
+        run: php artisan serve --port=8000 &
+
+      - uses: browser-actions/setup-chrome@latest
+
+      - name: Run Dusk tests
+        run: php artisan dusk --env=dusk
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dusk-screenshots
+          path: tests/Browser/screenshots
