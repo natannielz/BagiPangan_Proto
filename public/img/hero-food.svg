@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#86efac" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#86efac" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#16a34a" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Large background glows -->
+  <circle cx="300" cy="400" r="350" fill="url(#glow1)"/>
+  <circle cx="1600" cy="300" r="400" fill="url(#glow2)"/>
+  <circle cx="960" cy="800" r="300" fill="url(#glow1)"/>
+
+  <!-- Abstract organic shapes - top left cluster -->
+  <circle cx="150" cy="120" r="80" fill="#dcfce7" opacity="0.12"/>
+  <circle cx="220" cy="180" r="50" fill="#86efac" opacity="0.08"/>
+  <path d="M80 200 C120 160 180 180 160 240 C140 300 60 280 80 200 Z" fill="#16a34a" opacity="0.06"/>
+
+  <!-- Abstract bowl shape - left area -->
+  <g transform="translate(250, 350)" opacity="0.1">
+    <path d="M0 50 C0 50 -10 110 50 130 C80 140 140 140 170 130 C230 110 220 50 220 50 Z" fill="#16a34a"/>
+    <ellipse cx="110" cy="50" rx="115" ry="25" fill="#86efac"/>
+  </g>
+
+  <!-- Sharing hands - left hand -->
+  <g transform="translate(400, 500)" opacity="0.07">
+    <path d="M0 60 C0 30 20 0 50 0 C60 0 70 5 75 15 L80 30 C85 15 95 10 105 15 C120 22 115 45 110 60 L100 90 C95 105 80 115 60 115 L30 115 C15 115 0 100 0 85 Z" fill="#16a34a"/>
+  </g>
+
+  <!-- Sharing hands - right hand (mirrored) -->
+  <g transform="translate(1400, 480) scale(-1,1)" opacity="0.07">
+    <path d="M0 60 C0 30 20 0 50 0 C60 0 70 5 75 15 L80 30 C85 15 95 10 105 15 C120 22 115 45 110 60 L100 90 C95 105 80 115 60 115 L30 115 C15 115 0 100 0 85 Z" fill="#16a34a"/>
+  </g>
+
+  <!-- Floating circles - food sharing symbols -->
+  <circle cx="600" cy="200" r="40" fill="#dcfce7" opacity="0.15"/>
+  <circle cx="750" cy="350" r="25" fill="#86efac" opacity="0.1"/>
+  <circle cx="500" cy="700" r="55" fill="#dcfce7" opacity="0.1"/>
+  <circle cx="1300" cy="150" r="45" fill="#86efac" opacity="0.08"/>
+  <circle cx="1100" cy="600" r="35" fill="#dcfce7" opacity="0.12"/>
+  <circle cx="1500" cy="700" r="60" fill="#dcfce7" opacity="0.08"/>
+  <circle cx="850" cy="900" r="30" fill="#86efac" opacity="0.1"/>
+  <circle cx="1700" cy="500" r="40" fill="#dcfce7" opacity="0.1"/>
+
+  <!-- Abstract bowl - center -->
+  <g transform="translate(850, 400)" opacity="0.08">
+    <path d="M0 40 C0 40 -8 90 40 108 C65 118 115 118 140 108 C188 90 180 40 180 40 Z" fill="#16a34a"/>
+    <ellipse cx="90" cy="40" rx="95" ry="22" fill="#86efac"/>
+  </g>
+
+  <!-- Abstract bowl - right area -->
+  <g transform="translate(1350, 550)" opacity="0.06">
+    <path d="M0 35 C0 35 -6 80 35 95 C55 103 95 103 115 95 C155 80 150 35 150 35 Z" fill="#16a34a"/>
+    <ellipse cx="75" cy="35" rx="80" ry="18" fill="#86efac"/>
+  </g>
+
+  <!-- Organic leaf shapes scattered -->
+  <g transform="translate(100, 600) rotate(25)" opacity="0.06">
+    <path d="M0 0 C30 -25 65 -10 55 25 C45 60 5 50 0 0 Z" fill="#16a34a"/>
+  </g>
+  <g transform="translate(1750, 200) rotate(-15)" opacity="0.08">
+    <path d="M0 0 C25 -20 55 -8 45 20 C35 48 3 40 0 0 Z" fill="#86efac"/>
+  </g>
+  <g transform="translate(700, 800) rotate(40)" opacity="0.06">
+    <path d="M0 0 C35 -28 70 -12 60 28 C48 68 4 55 0 0 Z" fill="#16a34a"/>
+  </g>
+  <g transform="translate(1200, 900) rotate(-30)" opacity="0.07">
+    <path d="M0 0 C28 -22 58 -8 48 22 C38 52 4 42 0 0 Z" fill="#86efac"/>
+  </g>
+  <g transform="translate(1600, 850) rotate(10)" opacity="0.05">
+    <path d="M0 0 C32 -26 68 -10 56 26 C44 62 4 50 0 0 Z" fill="#16a34a"/>
+  </g>
+
+  <!-- Connection lines between elements (sharing concept) -->
+  <line x1="600" y1="200" x2="750" y2="350" stroke="#86efac" stroke-width="1" opacity="0.06"/>
+  <line x1="750" y1="350" x2="940" y2="440" stroke="#86efac" stroke-width="1" opacity="0.05"/>
+  <line x1="940" y1="440" x2="1100" y2="600" stroke="#86efac" stroke-width="1" opacity="0.05"/>
+  <line x1="1100" y1="600" x2="1300" y2="150" stroke="#86efac" stroke-width="1" opacity="0.04"/>
+
+  <!-- Dotted arc shapes suggesting community -->
+  <path d="M400 300 C550 100 800 80 960 200" stroke="#16a34a" stroke-width="1.5" fill="none" opacity="0.05" stroke-dasharray="8 6"/>
+  <path d="M960 200 C1120 320 1370 300 1520 150" stroke="#16a34a" stroke-width="1.5" fill="none" opacity="0.04" stroke-dasharray="8 6"/>
+  <path d="M300 700 C500 550 750 580 960 680" stroke="#86efac" stroke-width="1.5" fill="none" opacity="0.05" stroke-dasharray="8 6"/>
+
+  <!-- Small decorative dots -->
+  <circle cx="400" cy="150" r="4" fill="#16a34a" opacity="0.1"/>
+  <circle cx="680" cy="450" r="3" fill="#86efac" opacity="0.12"/>
+  <circle cx="1050" cy="250" r="5" fill="#dcfce7" opacity="0.15"/>
+  <circle cx="1250" cy="450" r="4" fill="#16a34a" opacity="0.08"/>
+  <circle cx="350" cy="850" r="3" fill="#86efac" opacity="0.1"/>
+  <circle cx="1550" cy="400" r="4" fill="#dcfce7" opacity="0.12"/>
+  <circle cx="900" cy="150" r="3" fill="#16a34a" opacity="0.08"/>
+  <circle cx="1150" cy="800" r="5" fill="#86efac" opacity="0.1"/>
+  <circle cx="200" cy="450" r="4" fill="#dcfce7" opacity="0.1"/>
+  <circle cx="1680" cy="650" r="3" fill="#16a34a" opacity="0.08"/>
+</svg>

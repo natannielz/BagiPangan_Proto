@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
         $avgClaimHours = Claim::query()
             ->whereBetween('claimed_at', [$from, $to])
-            ->selectRaw('AVG(TIMESTAMPDIFF(HOUR, d.created_at, claims.claimed_at)) as avg_hours')
+            ->selectRaw('AVG((julianday(claims.claimed_at) - julianday(d.created_at)) * 24) as avg_hours')
             ->join('donations as d', 'd.id', '=', 'claims.donation_id')
             ->value('avg_hours');
 

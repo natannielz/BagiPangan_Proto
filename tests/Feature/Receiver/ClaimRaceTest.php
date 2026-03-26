@@ -50,9 +50,9 @@ class ClaimRaceTest extends TestCase
             'moderation_status' => 'approved',
         ]);
 
-        $this->actingAs($receiver1)->post('/receiver/donations/'.$donation->id.'/claim')->assertRedirect('/receiver/claims');
+        $this->actingAs($receiver1)->post('/receiver/donations/'.$donation->id.'/claim')->assertRedirect()->assertSessionHas('success');
 
-        $this->actingAs($receiver2)->post('/receiver/donations/'.$donation->id.'/claim')->assertStatus(409);
+        $this->actingAs($receiver2)->post('/receiver/donations/'.$donation->id.'/claim')->assertRedirect()->assertSessionHas('error');
 
         $this->assertSame('claimed', $donation->fresh()->status);
         $this->assertSame(1, Claim::query()->where('donation_id', $donation->id)->count());

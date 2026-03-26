@@ -7,6 +7,7 @@ use App\Http\Resources\DonationResource;
 use App\Models\Donation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DonationController extends Controller
 {
@@ -33,7 +34,19 @@ class DonationController extends Controller
             })
             ->when($categoryId > 0, fn ($q) => $q->where('category_id', $categoryId))
             ->when($location !== '', fn ($q) => $q->where('location_district', 'like', '%'.$location.'%'))
-            ->when($q !== '', fn ($q2) => $q2->where('title', 'like', '%'.$q.'%'))
+            ->when($q !== '' && strlen($q) >= 2, function ($q2) use ($q) {
+                if (DB::connection()->getDriverName() === 'mysql') {
+                    $q2->whereRaw(
+                        'MATCH(title, location_district, description) AGAINST(? IN BOOLEAN MODE)',
+                        [$q.'*']
+                    )->orderByRaw(
+                        'MATCH(title, location_district, description) AGAINST(? IN BOOLEAN MODE) DESC',
+                        [$q.'*']
+                    );
+                } else {
+                    $q2->where('title', 'like', '%'.$q.'%');
+                }
+            })
             ->when($sort === 'expiry_asc', fn ($q) => $q->orderBy('expiry_at'))
             ->when($sort === 'expiry_desc', fn ($q) => $q->orderByDesc('expiry_at'))
             ->when($sort === 'oldest', fn ($q) => $q->orderBy('created_at'))

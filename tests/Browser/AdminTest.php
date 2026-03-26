@@ -13,6 +13,30 @@ class AdminTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
+    public function test_admin_suspends_user(): void
+    {
+        $admin = User::factory()->create(['role' => 'admin', 'password' => bcrypt('password')]);
+        $donor = User::factory()->create(['role' => 'donor', 'password' => bcrypt('password')]);
+
+        $this->browse(function (Browser $browser) use ($admin, $donor) {
+            $browser->loginAs($admin)
+                ->visit('/admin/users')
+                ->assertSee($donor->name)
+                ->press('Tangguhkan')
+                ->waitFor('.fixed.inset-0', 3)
+                ->press('Ya, lanjutkan')
+                ->waitForText('Akun ditangguhkan')
+                ->assertSee('Akun ditangguhkan');
+
+            // Logout admin and try logging in as suspended donor
+            $browser->visit('/login')
+                ->type('email', $donor->email)
+                ->type('password', 'password')
+                ->press('Log in')
+                ->assertSee('ditangguhkan');
+        });
+    }
+
     public function test_admin_rejects_donation_with_reason(): void
     {
         $admin  = User::factory()->create(['role' => 'admin', 'password' => bcrypt('password')]);

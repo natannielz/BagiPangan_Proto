@@ -43,9 +43,7 @@
                                             </div>
                                         </td>
                                         <td class="py-3 pr-4">
-                                            <span class="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
-                                                {{ $claim->status }}
-                                            </span>
+                                            <x-status-badge :status="$claim->status" />
                                         </td>
                                         <td class="py-3 pr-4">{{ optional($claim->claimed_at)->format('Y-m-d H:i') }}</td>
                                         <td class="py-3 pr-4">

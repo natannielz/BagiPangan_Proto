@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── SVG ellipse draw-on (hero) ── */
+@keyframes drawEllipse {
+  from { stroke-dashoffset: 900; }
+  to   { stroke-dashoffset: 0; }
+}
+.draw-ellipse {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: drawEllipse 1s 0.4s ease forwards;
+}
+
+/* ── Dashboard mockup 3D tilt (landing) ── */
+.mockup-tilt {
+  transform: perspective(1200px) rotateY(-8deg) rotateX(3deg);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.18);
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.mockup-tilt:hover {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+}
+
+/* ── Thin custom scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: #bbf7d0; border-radius: 4px; }
+
+/* ── Card hover lift ── */
+.card-hover {
+  transition: transform 200ms cubic-bezier(.4,0,.2,1),
+              box-shadow 200ms cubic-bezier(.4,0,.2,1),
+              border-color 200ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(22,163,74,.12);
+  border-color: #86efac;
+}

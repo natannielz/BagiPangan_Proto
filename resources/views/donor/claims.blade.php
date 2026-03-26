@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 space-y-4">
                     @if (session('status') === 'claim-verified')
                         <div class="rounded-md bg-green-50 p-4 text-green-800">
-                            Klaim berhasil diverifikasi.
+                            Klaim selesai diverifikasi.
                         </div>
                     @endif
 

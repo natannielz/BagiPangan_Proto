@@ -6,7 +6,28 @@
                 <div class="text-sm text-gray-600">Pendaftaran BagiPangan</div>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm" x-data="{ step: {{ old('role') ? 2 : 1 }}, role: @js(old('role')), }">
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm" x-data="{
+                step: {{ old('role') ? 2 : 1 }},
+                role: @js(old('role')),
+                emailTaken: false,
+                _emailTimeout: null,
+                checkEmail(e) {
+                    clearTimeout(this._emailTimeout);
+                    this._emailTimeout = setTimeout(async () => {
+                        const email = e.target.value.trim();
+                        if (!email || !email.includes('@')) { this.emailTaken = false; return; }
+                        try {
+                            const res = await fetch('/api/check-email', {
+                                method: 'POST',
+                                headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]')?.content || ''},
+                                body: JSON.stringify({email})
+                            });
+                            const data = await res.json();
+                            this.emailTaken = !data.available;
+                        } catch { this.emailTaken = false; }
+                    }, 400);
+                }
+            }">
                 <div class="mb-6">
                     <div class="text-2xl font-semibold tracking-tight">Daftar Akun</div>
                     <div class="mt-1 text-sm text-gray-600">Lengkapi data berikut untuk mulai berbagi.</div>
@@ -26,7 +47,7 @@
 
                 <div x-show="step === 1" x-transition>
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-                        <button type="button" class="relative rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:shadow-md" :class="role === 'donor' ? 'border-brand-600 ring-2 ring-brand-600/20' : 'border-gray-200'" @click="role='donor'">
+                        <button type="button" dusk="role-donor" class="relative rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:shadow-md" :class="role === 'donor' ? 'border-brand-600 ring-2 ring-brand-600/20' : 'border-gray-200'" @click="role='donor'">
                             <div class="mb-3 flex items-center justify-between">
                                 <div class="h-10 w-10 rounded-xl bg-brand-50 p-2 text-brand-800">
                                     <svg viewBox="0 0 24 24" class="h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +106,7 @@
                     </div>
                 </div>
 
-                <div x-show="step === 2" x-transition>
+                <div id="step2" x-show="step === 2" x-transition>
                     <form method="POST" action="{{ route('register') }}" class="space-y-4">
                         @csrf
                         <input type="hidden" name="role" :value="role">
@@ -99,8 +120,9 @@
 
                             <div class="md:col-span-2">
                                 <label for="email" class="text-sm font-medium text-gray-700">Email</label>
-                                <input id="email" name="email" type="email" autocomplete="email" value="{{ old('email') }}" required class="mt-1 block w-full rounded-xl border-gray-200 shadow-sm focus:border-brand-600 focus:ring-brand-600" />
+                                <input id="email" name="email" type="email" autocomplete="email" value="{{ old('email') }}" required class="mt-1 block w-full rounded-xl border-gray-200 shadow-sm focus:border-brand-600 focus:ring-brand-600" @blur="checkEmail($event)" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                <p x-show="emailTaken" x-cloak class="mt-1 text-sm text-red-600" id="email-taken-msg">Email sudah terdaftar</p>
                             </div>
 
                             <div>

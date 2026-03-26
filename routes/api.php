@@ -7,6 +7,16 @@ use App\Http\Controllers\Api\V1\DonationController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::post('/check-email', function (\Illuminate\Http\Request $request) {
+    $request->validate(['email' => 'required|email']);
+    $exists = \App\Models\User::where('email', $request->email)->exists();
+
+    return response()->json([
+        'available' => ! $exists,
+        'message'   => $exists ? 'Email sudah terdaftar' : 'Email tersedia',
+    ]);
+})->middleware('throttle:api-general');
+
 Route::prefix('v1')->middleware('throttle:api-general')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/donations', [DonationController::class, 'index']);

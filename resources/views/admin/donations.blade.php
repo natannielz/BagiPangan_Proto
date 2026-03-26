@@ -62,14 +62,10 @@
                                         </td>
                                         <td class="py-3 pr-4">{{ $donation->category?->name }}</td>
                                         <td class="py-3 pr-4">
-                                            <span class="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
-                                                {{ $donation->status }}
-                                            </span>
+                                            <x-status-badge :status="$donation->status" />
                                         </td>
                                         <td class="py-3 pr-4">
-                                            <span class="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
-                                                {{ $donation->moderation_status }}
-                                            </span>
+                                            <x-status-badge :status="$donation->moderation_status" />
                                         </td>
                                         <td class="py-3 pr-4 text-right">
                                             <div class="flex items-center justify-end gap-3">

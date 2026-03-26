@@ -9,6 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 space-y-6">
+                    @if (session('success'))
+                        <div class="rounded-md bg-green-50 p-4 text-green-800">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="rounded-md bg-red-50 p-4 text-red-800">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     <div class="flex items-start justify-between gap-4">
                         <div>
                             <div class="text-sm text-gray-600">
@@ -18,9 +29,7 @@
                                 {{ $donation->title }}
                             </h1>
                         </div>
-                        <span class="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
-                            {{ $donation->status }}
-                        </span>
+                        <x-status-badge :status="$donation->status" />
                     </div>
 
                     @if ($photoUrl)
@@ -49,9 +58,9 @@
                     @endif
 
                     @if (Auth::check() && Auth::user()->role === 'receiver' && $donation->status === 'available' && optional($donation->expiry_at)->isFuture())
-                        <form method="POST" action="{{ route('receiver.donations.claim', $donation) }}">
+                        <form method="POST" action="{{ route('receiver.donations.claim', $donation) }}" dusk="claim-button">
                             @csrf
-                            <x-primary-button type="submit">Klaim Donasi</x-primary-button>
+                            <x-primary-button type="submit">Klaim Sekarang</x-primary-button>
                         </form>
                     @endif
 

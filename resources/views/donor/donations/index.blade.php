@@ -57,37 +57,25 @@
                                         <td class="py-3 pr-4">{{ $donation->location_district }}</td>
                                         <td class="py-3 pr-4">{{ optional($donation->expiry_at)->format('Y-m-d H:i') }}</td>
                                         <td class="py-3 pr-4">
-                                            <span class="text-xs px-2 py-1 rounded bg-gray-100 text-gray-700">
-                                                {{ $donation->status }}
-                                            </span>
+                                            <x-status-badge :status="$donation->status" />
                                         </td>
                                         <td class="py-3 pr-4">
-                                            @switch($donation->moderation_status)
-                                                @case('pending')
-                                                    <span class="text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-800">Menunggu Moderasi</span>
-                                                    @break
-                                                @case('approved')
-                                                    <span class="text-xs px-2 py-1 rounded bg-green-100 text-green-800">Disetujui</span>
-                                                    @break
-                                                @case('rejected')
-                                                    <span class="text-xs px-2 py-1 rounded bg-red-100 text-red-800">Ditolak</span>
-                                                    @if($donation->rejection_reason)
-                                                        <div x-data="{ open: false }" class="inline-block ml-1">
-                                                            <button
-                                                                @click="open = !open"
-                                                                class="text-xs text-red-600 underline hover:text-red-800"
-                                                            >Lihat alasan</button>
-                                                            <div
-                                                                x-show="open"
-                                                                @click.outside="open = false"
-                                                                class="absolute z-10 mt-1 p-3 bg-white border border-red-200 rounded-md shadow-lg max-w-xs text-xs text-gray-700"
-                                                            >
-                                                                {{ $donation->rejection_reason }}
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                    @break
-                                            @endswitch
+                                            <x-status-badge :status="$donation->moderation_status" />
+                                            @if($donation->moderation_status === 'rejected' && $donation->rejection_reason)
+                                                <div x-data="{ open: false }" class="inline-block ml-1">
+                                                    <button
+                                                        @click="open = !open"
+                                                        class="text-xs text-red-600 underline hover:text-red-800"
+                                                    >Lihat alasan</button>
+                                                    <div
+                                                        x-show="open"
+                                                        @click.outside="open = false"
+                                                        class="absolute z-10 mt-1 p-3 bg-white border border-red-200 rounded-md shadow-lg max-w-xs text-xs text-gray-700"
+                                                    >
+                                                        {{ $donation->rejection_reason }}
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </td>
                                         <td class="py-3 pr-4 text-right">
                                             <div class="flex items-center justify-end gap-3">

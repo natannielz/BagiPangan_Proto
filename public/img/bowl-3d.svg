@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!-- Shadow -->
+  <ellipse cx="150" cy="260" rx="100" ry="18" fill="#166534" opacity="0.15"/>
+
+  <!-- Bowl back rim (3D effect) -->
+  <path d="M50 150 C50 120 100 100 150 100 C200 100 250 120 250 150" fill="#16a34a" opacity="0.4"/>
+
+  <!-- Bowl body -->
+  <path d="M50 150 C50 150 45 210 90 235 C115 248 185 248 210 235 C255 210 250 150 250 150 Z" fill="#16a34a"/>
+
+  <!-- Bowl body highlight -->
+  <path d="M60 155 C60 155 58 200 95 222 C115 233 165 236 185 228 C210 215 215 175 215 165" fill="#22c55e" opacity="0.3"/>
+
+  <!-- Bowl rim -->
+  <ellipse cx="150" cy="150" rx="102" ry="28" fill="#86efac"/>
+  <ellipse cx="150" cy="148" rx="102" ry="28" fill="#16a34a" opacity="0.1"/>
+
+  <!-- Bowl inner area -->
+  <ellipse cx="150" cy="150" rx="88" ry="22" fill="#dcfce7"/>
+  <ellipse cx="150" cy="152" rx="85" ry="20" fill="#f0fdf4"/>
+
+  <!-- Food items inside bowl -->
+  <!-- Rice base -->
+  <ellipse cx="150" cy="145" rx="65" ry="16" fill="#fef9c3" opacity="0.8"/>
+
+  <!-- Green vegetable chunks -->
+  <ellipse cx="120" cy="142" rx="14" ry="8" fill="#16a34a" opacity="0.7" transform="rotate(-10, 120, 142)"/>
+  <ellipse cx="175" cy="140" rx="12" ry="7" fill="#22c55e" opacity="0.7" transform="rotate(15, 175, 140)"/>
+
+  <!-- Carrot pieces -->
+  <rect x="135" y="138" width="18" height="7" rx="2" fill="#f59e0b" transform="rotate(-20, 144, 141)"/>
+  <rect x="155" y="145" width="14" height="6" rx="2" fill="#fbbf24" transform="rotate(10, 162, 148)"/>
+
+  <!-- Tomato piece -->
+  <circle cx="140" cy="148" r="8" fill="#ef4444" opacity="0.8"/>
+  <circle cx="138" cy="146" r="3" fill="#fca5a5" opacity="0.4"/>
+
+  <!-- Small green peas -->
+  <circle cx="160" cy="150" r="4" fill="#86efac"/>
+  <circle cx="168" cy="147" r="3.5" fill="#86efac"/>
+  <circle cx="130" cy="150" r="3" fill="#86efac"/>
+
+  <!-- Leaf garnish -->
+  <g transform="translate(150, 132) rotate(-30)">
+    <path d="M0 0 C8 -6 18 -2 14 8 C10 18 1 14 0 0 Z" fill="#16a34a"/>
+    <path d="M0 0 C4 2 9 4 14 8" stroke="#166534" stroke-width="0.7" fill="none"/>
+  </g>
+
+  <!-- Steam -->
+  <g opacity="0.4">
+    <path d="M120 120 C120 108 130 108 130 96" stroke="#86efac" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M150 115 C150 100 162 100 162 85" stroke="#16a34a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M180 120 C180 108 190 108 190 96" stroke="#86efac" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bowl base/foot -->
+  <ellipse cx="150" cy="240" rx="40" ry="6" fill="#166534" opacity="0.4"/>
+  <rect x="120" y="234" width="60" height="8" rx="3" fill="#16a34a" opacity="0.6"/>
+</svg>

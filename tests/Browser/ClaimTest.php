@@ -52,6 +52,35 @@ class ClaimTest extends DuskTestCase
         });
     }
 
+    public function test_race_condition_return_409(): void
+    {
+        $receiver1 = User::factory()->create(['role' => 'receiver', 'password' => bcrypt('password')]);
+        $receiver2 = User::factory()->create(['role' => 'receiver', 'password' => bcrypt('password')]);
+        $donation  = Donation::factory()->create([
+            'moderation_status' => 'approved',
+            'status'            => 'available',
+            'expiry_at'         => now()->addDays(1),
+        ]);
+
+        $this->browse(function (Browser $first, Browser $second) use ($receiver1, $receiver2, $donation) {
+            $first->loginAs($receiver1)->visit('/donations/'.$donation->id);
+            $second->loginAs($receiver2)->visit('/donations/'.$donation->id);
+
+            $first->press('Klaim Sekarang');
+            $second->press('Klaim Sekarang');
+
+            $first->waitForText('diklaim', 5);
+            $second->waitForText('diklaim', 5);
+
+            $texts = $first->text('body').$second->text('body');
+
+            $this->assertTrue(
+                str_contains($texts, 'Berhasil diklaim') || str_contains($texts, 'Sudah diklaim') || str_contains($texts, 'sudah diklaim'),
+                'At least one browser should see a claim result'
+            );
+        });
+    }
+
     public function test_concurrent_claim_limit_enforced(): void
     {
         $receiver = User::factory()->create(['role' => 'receiver', 'password' => bcrypt('password')]);

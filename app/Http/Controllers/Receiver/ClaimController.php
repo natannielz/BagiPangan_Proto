@@ -43,15 +43,15 @@ class ClaimController extends Controller
                 $lockedDonation = Donation::lockForUpdate()->findOrFail($donation->id);
 
                 if ($lockedDonation->moderation_status !== 'approved') {
-                    abort(409, 'Not available');
+                    return 'Donasi ini belum disetujui moderator.';
                 }
 
                 if ($lockedDonation->expiry_at && $lockedDonation->expiry_at->isPast()) {
-                    abort(422, 'Donation expired');
+                    return 'Donasi ini sudah kadaluarsa.';
                 }
 
                 if ($lockedDonation->status !== 'available') {
-                    abort(409, 'Already claimed');
+                    return 'Sudah diklaim oleh penerima lain.';
                 }
 
                 $activeClaims = Claim::query()
@@ -60,7 +60,7 @@ class ClaimController extends Controller
                     ->count();
 
                 if ($activeClaims >= 3) {
-                    abort(422, 'Limit reached');
+                    return 'Batas klaim aktif tercapai (maksimal 3).';
                 }
 
                 $lockedDonation->update(['status' => 'claimed']);
@@ -73,12 +73,16 @@ class ClaimController extends Controller
                 ]);
             });
         } catch (QueryException $e) {
-            abort(409, 'Already claimed');
+            return back()->with('error', 'Sudah diklaim oleh penerima lain.');
+        }
+
+        if (is_string($claim)) {
+            return back()->with('error', $claim);
         }
 
         DonationClaimed::dispatch($claim);
 
-        return Redirect::route('receiver.claims')->with('status', 'claim-created');
+        return back()->with('success', 'Berhasil diklaim! Donasi ini sekarang milik Anda.');
     }
 
     public function proofForm(Claim $claim): View

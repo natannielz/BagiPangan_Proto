@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300">
+  <!-- Leaf 1 - large, top-right -->
+  <g transform="translate(130, 30) rotate(15)">
+    <path d="M0 0 C40 -30 80 -10 65 40 C50 90 5 70 0 0 Z" fill="#16a34a" opacity="0.8"/>
+    <path d="M0 0 C20 10 40 20 65 40" stroke="#166534" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M15 5 C20 15 30 20 40 28" stroke="#166534" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M5 15 C12 22 20 30 30 38" stroke="#166534" stroke-width="1" fill="none" opacity="0.4"/>
+  </g>
+
+  <!-- Leaf 2 - medium, left side -->
+  <g transform="translate(30, 120) rotate(-20)">
+    <path d="M0 0 C30 -25 65 -8 52 30 C40 68 4 55 0 0 Z" fill="#86efac" opacity="0.9"/>
+    <path d="M0 0 C16 8 32 16 52 30" stroke="#16a34a" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M10 3 C16 12 24 18 32 24" stroke="#16a34a" stroke-width="1" fill="none" opacity="0.3"/>
+  </g>
+
+  <!-- Leaf 3 - small, center -->
+  <g transform="translate(100, 180) rotate(35)">
+    <path d="M0 0 C22 -18 48 -6 38 22 C28 50 3 40 0 0 Z" fill="#dcfce7" opacity="0.9"/>
+    <path d="M0 0 C12 6 24 12 38 22" stroke="#86efac" stroke-width="1.2" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Leaf 4 - large, bottom flowing -->
+  <g transform="translate(60, 230) rotate(-10)">
+    <path d="M0 0 C35 -28 75 -12 62 35 C48 82 5 65 0 0 Z" fill="#16a34a" opacity="0.6"/>
+    <path d="M0 0 C18 9 38 18 62 35" stroke="#166534" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M12 4 C20 14 30 22 42 30" stroke="#166534" stroke-width="1" fill="none" opacity="0.3"/>
+    <path d="M4 16 C14 24 24 32 35 40" stroke="#166534" stroke-width="1" fill="none" opacity="0.3"/>
+  </g>
+
+  <!-- Small accent dots -->
+  <circle cx="170" cy="100" r="4" fill="#86efac" opacity="0.5"/>
+  <circle cx="25" cy="80" r="3" fill="#dcfce7" opacity="0.6"/>
+  <circle cx="150" cy="220" r="5" fill="#16a34a" opacity="0.3"/>
+  <circle cx="40" cy="270" r="3" fill="#86efac" opacity="0.4"/>
+</svg>

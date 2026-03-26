@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 0 520 600">
+  <!-- Background decorative circles -->
+  <circle cx="60" cy="80" r="40" fill="#dcfce7" opacity="0.5"/>
+  <circle cx="380" cy="120" r="55" fill="#dcfce7" opacity="0.4"/>
+  <circle cx="420" cy="400" r="30" fill="#dcfce7" opacity="0.6"/>
+
+  <!-- Large central plate/bowl -->
+  <ellipse cx="200" cy="340" rx="160" ry="40" fill="#166534" opacity="0.3"/>
+  <path d="M50 280 C50 280 40 340 120 370 C155 382 245 382 280 370 C360 340 350 280 350 280 Z" fill="#16a34a"/>
+  <ellipse cx="200" cy="280" rx="152" ry="35" fill="#86efac"/>
+  <ellipse cx="200" cy="280" rx="130" ry="28" fill="#dcfce7"/>
+
+  <!-- Food items in bowl -->
+  <!-- Rice/grain mound -->
+  <ellipse cx="200" cy="270" rx="80" ry="20" fill="#fef9c3"/>
+  <path d="M130 270 C130 250 200 230 200 230 C200 230 270 250 270 270" fill="#fde68a"/>
+
+  <!-- Carrot (left) -->
+  <g transform="translate(80, 120) rotate(20)">
+    <path d="M0 0 L-8 60 L8 60 Z" fill="#f59e0b"/>
+    <path d="M0 0 C-5 -10 -15 -15 -10 -25" stroke="#16a34a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M0 0 C5 -12 10 -18 15 -22" stroke="#16a34a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M0 0 C0 -10 2 -20 2 -28" stroke="#86efac" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Tomato (right) -->
+  <g transform="translate(340, 150)">
+    <circle cx="0" cy="0" r="28" fill="#ef4444"/>
+    <circle cx="0" cy="0" r="28" fill="url(#tomatoShine)" opacity="0.3"/>
+    <path d="M-5 -28 C-5 -35 5 -35 5 -28" stroke="#16a34a" stroke-width="2.5" fill="#16a34a"/>
+    <path d="M0 -28 C0 -38 -8 -40 -8 -40" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Floating leaf (top center) -->
+  <g transform="translate(200, 60) rotate(-15)">
+    <path d="M0 0 C20 -15 40 -5 30 15 C20 35 0 30 0 0 Z" fill="#86efac"/>
+    <path d="M0 0 C10 5 20 8 30 15" stroke="#16a34a" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Floating leaf (left) -->
+  <g transform="translate(-20, 250) rotate(30)">
+    <path d="M0 0 C25 -20 50 -5 40 20 C28 45 0 35 0 0 Z" fill="#16a34a" opacity="0.7"/>
+    <path d="M0 0 C15 5 28 10 40 20" stroke="#166534" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Floating leaf (bottom right) -->
+  <g transform="translate(350, 320) rotate(-25)">
+    <path d="M0 0 C18 -12 36 -4 28 14 C18 32 0 25 0 0 Z" fill="#86efac" opacity="0.8"/>
+    <path d="M0 0 C10 4 20 7 28 14" stroke="#16a34a" stroke-width="1.2" fill="none"/>
+  </g>
+
+  <!-- Broccoli (upper right) -->
+  <g transform="translate(310, 80)">
+    <rect x="-3" y="10" width="6" height="20" rx="2" fill="#16a34a"/>
+    <circle cx="0" cy="5" r="12" fill="#16a34a"/>
+    <circle cx="-8" cy="8" r="10" fill="#16a34a"/>
+    <circle cx="8" cy="8" r="10" fill="#16a34a"/>
+    <circle cx="0" cy="2" r="10" fill="#86efac"/>
+    <circle cx="-6" cy="6" r="8" fill="#86efac" opacity="0.7"/>
+    <circle cx="6" cy="6" r="8" fill="#86efac" opacity="0.7"/>
+  </g>
+
+  <!-- Decorative leaves extending right edge -->
+  <g transform="translate(400, 200)">
+    <path d="M0 0 C30 -30 70 -20 60 20 C50 60 10 50 0 0 Z" fill="#16a34a" opacity="0.4"/>
+    <path d="M20 40 C50 20 80 35 70 70 C58 100 25 90 20 40 Z" fill="#86efac" opacity="0.5"/>
+    <path d="M-10 80 C25 60 55 75 45 110 C35 140 0 130 -10 80 Z" fill="#dcfce7" opacity="0.6"/>
+  </g>
+
+  <!-- Small decorative dots -->
+  <circle cx="30" cy="160" r="5" fill="#86efac" opacity="0.6"/>
+  <circle cx="100" cy="420" r="4" fill="#16a34a" opacity="0.4"/>
+  <circle cx="320" cy="430" r="6" fill="#dcfce7" opacity="0.7"/>
+  <circle cx="-30" cy="350" r="4" fill="#86efac" opacity="0.5"/>
+
+  <!-- Steam from bowl -->
+  <path d="M160 250 C160 235 175 235 175 220" stroke="#86efac" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M200 245 C200 228 215 228 215 212" stroke="#16a34a" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M240 250 C240 235 255 235 255 220" stroke="#86efac" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+  <defs>
+    <radialGradient id="tomatoShine">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+</svg>

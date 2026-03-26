@@ -76,4 +76,29 @@ class AuthTest extends DuskTestCase
                 ->assertVisible('#step2');
         });
     }
+
+    public function test_password_show_hide(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                ->assertAttribute('#password', 'type', 'password')
+                ->click('button[class*="absolute"]')
+                ->assertAttribute('#password', 'type', 'text');
+        });
+    }
+
+    public function test_email_uniqueness_check(): void
+    {
+        $existing = User::factory()->create(['email' => 'taken@example.com']);
+
+        $this->browse(function (Browser $browser) use ($existing) {
+            $browser->visit('/register')
+                ->click('@role-donor')
+                ->waitFor('#step2')
+                ->type('email', $existing->email)
+                ->click('#name') // blur away from email field
+                ->waitForText('sudah terdaftar')
+                ->assertSee('sudah terdaftar');
+        });
+    }
 }

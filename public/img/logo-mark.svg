@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Bowl body -->
+  <path d="M4 13 C4 13 2 24 10 28 C13 29.5 19 29.5 22 28 C30 24 28 13 28 13 Z" fill="#16a34a"/>
+  <!-- Bowl rim -->
+  <ellipse cx="16" cy="13" rx="13" ry="3.5" fill="#86efac"/>
+  <!-- Steam lines -->
+  <path d="M11 9 C11 5.5 14 5.5 14 2" stroke="#86efac" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M16 7 C16 3.5 19 3.5 19 0" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M21 9 C21 5.5 24 5.5 24 2" stroke="#86efac" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

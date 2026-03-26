@@ -49,8 +49,10 @@ class ClaimFlowTest extends TestCase
             'moderation_status' => 'approved',
         ]);
 
-        $claimResponse = $this->actingAs($receiver)->post('/receiver/donations/'.$donation->id.'/claim');
-        $claimResponse->assertRedirect('/receiver/claims');
+        $claimResponse = $this->actingAs($receiver)
+            ->from('/donations/'.$donation->id)
+            ->post('/receiver/donations/'.$donation->id.'/claim');
+        $claimResponse->assertRedirect('/donations/'.$donation->id)->assertSessionHas('success');
 
         $this->assertSame('claimed', $donation->fresh()->status);
         $this->assertSame(1, DatabaseNotification::query()->where('notifiable_id', $donor->id)->count());
